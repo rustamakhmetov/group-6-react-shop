@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Catalog from '../components/Catalog';
+import CartButton from '../components/CartButton';
 import products from '../constants/Products';
 
 class CatalogPage extends Component {
   render() {
 
     return (
-      <Catalog products={products}/>
+      <Fragment>
+        <CartButton />
+        <Catalog products={products}/>
+      </Fragment>
     );
   }
 }
