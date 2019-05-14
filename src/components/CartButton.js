@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
+
+import CartContext from '../contexts/CartContext';
 
 class CartButton extends Component {
   constructor(props) {
@@ -11,8 +13,16 @@ class CartButton extends Component {
 
   render() {
     return (
-      <button>Cart: {this.state.count}</button>
-    );
+      <Fragment>
+        <CartContext.Consumer>
+          {
+            productsInCart => console.log(productsInCart)
+          }
+        </CartContext.Consumer>
+
+        <button>{this.state.count}</button>
+      </Fragment>
+    )
   }
 }
 
