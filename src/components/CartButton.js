@@ -13,15 +13,15 @@ class CartButton extends Component {
 
   render() {
     return (
-      <Fragment>
-        <CartContext.Consumer>
-          {
-            productsInCart => console.log(productsInCart)
+      <CartContext.Consumer>
+        {
+          ({getProducts}) => {
+            return (
+              <button>{getProducts().length}</button>
+            )
           }
-        </CartContext.Consumer>
-
-        <button>{this.state.count}</button>
-      </Fragment>
+        }
+      </CartContext.Consumer>
     )
   }
 }

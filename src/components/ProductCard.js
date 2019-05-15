@@ -16,7 +16,7 @@ class ProductCard extends Component {
           {title}
         </TextBox>
         <Price value={price} />
-        <AddToCartButton />
+        <AddToCartButton product={this.props.product} />
       </div>
     );
   }

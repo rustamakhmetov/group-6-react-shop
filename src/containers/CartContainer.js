@@ -8,13 +8,38 @@ class CartContainer extends Component {
 
     this.state = {
       items: []
+    };
+
+    this.getProducts = this.getProducts.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  getProducts() {
+    return this.state.items;
+  }
+
+  addToCart(product) {
+    const { items } = this.state;
+    const elemId = items.findIndex((elem, index, arr) => elem.id === product.id);
+    if (elemId === -1) {
+      items.push(product);
     }
+    this.setState({ items: items })
   }
 
   render() {
+    const { children } = this.props;
+
     return (
-      <CartContext.Provider value={this.state.items}>
+      <CartContext.Provider value={
+        {
+          addToCart: this.addToCart,
+          getProducts: this.getProducts
+        }
+      }
+      >
         <CartButton />
+        {children}
       </CartContext.Provider>
     );
   }

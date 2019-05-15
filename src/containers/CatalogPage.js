@@ -5,13 +5,13 @@ import products from '../constants/Products';
 import CartContainer from './CartContainer';
 
 class CatalogPage extends Component {
+
   render() {
 
     return (
-      <Fragment>
-        <CartContainer />
+      <CartContainer>
         <Catalog products={products}/>
-      </Fragment>
+      </CartContainer>
     );
   }
 }
