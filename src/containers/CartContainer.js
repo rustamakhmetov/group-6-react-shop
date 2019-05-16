@@ -12,19 +12,30 @@ class CartContainer extends Component {
 
     this.getProducts = this.getProducts.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.getCountProducts = this.getCountProducts.bind(this);
   }
 
   getProducts() {
     return this.state.items;
   }
 
-  addToCart(product) {
+  getCountProducts() {
+    return this.state.items.reduce(
+      (previousValue, currentItem) => previousValue + currentItem.amount,
+      0
+    )
+  }
+
+  addToCart(product, amount) {
     const items = [...this.state.items];
-    const elemId = items.findIndex((elem, index, arr) => elem.id === product.id);
+    const elemId = items.findIndex((elem, index, arr) => elem.product.id === product.id);
     if (elemId === -1) {
-      items.push(product);
+      items.push({product, amount});
     }
-    this.setState({ items: items })
+    else {
+      items[elemId].amount += amount;
+    }
+    this.setState({ items: items });
   }
 
   render() {
@@ -34,7 +45,8 @@ class CartContainer extends Component {
       <CartContext.Provider value={
         {
           addToCart: this.addToCart,
-          getProducts: this.getProducts
+          getProducts: this.getProducts,
+          getCountProducts: this.getCountProducts
         }
       }
       >

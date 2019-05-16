@@ -3,21 +3,14 @@ import React, {Component, Fragment} from 'react';
 import CartContext from '../contexts/CartContext';
 
 class CartButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      count: 0
-    };
-  }
 
   render() {
     return (
       <CartContext.Consumer>
         {
-          ({getProducts}) => {
+          ({getCountProducts}) => {
             return (
-              <button>{getProducts().length}</button>
+              <button>{getCountProducts()}</button>
             )
           }
         }
