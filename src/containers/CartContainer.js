@@ -19,7 +19,7 @@ class CartContainer extends Component {
   }
 
   addToCart(product) {
-    const { items } = this.state;
+    const items = [...this.state.items];
     const elemId = items.findIndex((elem, index, arr) => elem.id === product.id);
     if (elemId === -1) {
       items.push(product);
